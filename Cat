@@ -1,0 +1,37 @@
+public class Cat {
+    private String name;
+    private int appetite;
+    private boolean wellFed;
+
+    public Cat(String name, int appetite, boolean wellFed)
+    {
+        this.name = name;
+        this.appetite = appetite;
+        this.wellFed = wellFed;
+    }
+
+    public void catInfo()
+    {
+        if (wellFed)
+        System.out.println("Cat : "+name+" Нужно еды : "+appetite+"гр - Котик сытый!!!");
+        else System.out.println("Cat : "+name+" Нужно еды : "+appetite+"гр - Котик голодный!!!");
+    }
+
+    public void eat (Plate p)
+    {
+        if (! wellFed) { // если котик голодный
+            p.decreaseFood(appetite); // котик поел и уменьшил еду в миске
+            wellFed=true; // теперь котик сытый
+        }
+        else System.out.println("Cat : "+name+" well-feed!"); // если котик изначально сытый
+    }
+
+    public int getAppetite() {return appetite;}
+
+    public boolean getWellFed() {return wellFed;}
+
+    public String getName() {return name;}
+
+
+
+}
