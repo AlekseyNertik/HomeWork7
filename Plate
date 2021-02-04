@@ -17,6 +17,4 @@ public class Plate {
 
     public void increaseFood() { food=100; info(); } // досыпаю корм до полной миски
 
-
-
 }
