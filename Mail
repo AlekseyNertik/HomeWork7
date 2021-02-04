@@ -1,0 +1,44 @@
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+
+        Cat[] cats = new Cat[5];
+
+        cats[0] = new Cat("FirstCat ", 20, false);
+        cats[1] = new Cat("SecondCat", 15, false);
+        cats[2] = new Cat("FatCat", 40, false);
+        cats[3] = new Cat("NextCat", 30, false);
+        cats[4] = new Cat("Kotik", 25,false);
+        int x;
+        Plate plate = new Plate(0); //сначала миска пустая
+        Scanner scanner = new Scanner(System.in);
+
+        plate.info(); // показываю пустую миску
+        for (int i=0; i < cats.length; i++) cats[i].catInfo(); // вывожу массив голодных котиков
+        System.out.println("Котиков будем кормить?? 1-да ");
+        x = x=scanner.nextInt();
+        if (x==1) { // если котиков буду кормить
+            plate.increaseFood(); // досыпаю корм в миску до 100 и показываю
+               for (int i = 0; i < cats.length; i++) { // котики поочереди подходят к миске
+                if (plate.getFoodPlate() >= cats[i].getAppetite() && cats[i].getWellFed() == false) { // если еды хватает и котик голодный
+                    cats[i].eat(plate); // тогда котик съел порцию и в миске стало меньше еды
+                    cats[i].catInfo(); // вывожу, что котик поел
+                } else { // если еды в миске котику не хватает
+                    System.out.println("Котику " + cats[i].getName() + " не хватает еды!!");
+                    cats[i].catInfo(); // пишу что котик голодный
+                    plate.info(); // пишу, что в миске есть еда, но ее мало
+                    System.out.print("Досыпать еды в плашку? 1-да ");
+                    x = x = scanner.nextInt();
+                    if (x == 1) { // если досыпаю в миску еды
+                        plate.increaseFood(); // досыпаю в миску еды до 100 и показываю
+                        i--; // возвращаю котика к миске
+                    } else System.out.println("Котик " + cats[i].getName() + " остался голодным!!!"); // если еды в миску не досыпал, то котик голодный
+                }
+
+            }
+        }
+        else System.out.println("НАТАША! Все котики остались голодными!!!"); // если кормить котиков не стал
+        plate.info(); // показываю, что миска пустая
+    }
+
+}
